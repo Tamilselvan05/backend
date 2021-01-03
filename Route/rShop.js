@@ -4,7 +4,6 @@ const router = express.Router();
 const mShop = require("../Model/mShop");
 // const tamil = require("../models/mModels");
 
-
 router.post("/insert", function (req, res) {
   console.log(req.body);
   let user = new mShop();
@@ -18,6 +17,16 @@ router.post("/insert", function (req, res) {
       res.send(err);
     } else {
       console.log("success save db");
+      res.send(docs);
+    }
+  });
+});
+
+router.get("/all", function (req, res) {
+  mShop.find({}, function (err, docs) {
+    if (err) {
+      res.send(err);
+    } else {
       res.send(docs);
     }
   });
